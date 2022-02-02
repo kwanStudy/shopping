@@ -1,20 +1,21 @@
-#Database
+app:
+  title : shopping project
+
+server:
+  port: 9000
+
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url:
     username:
     password:
-  #Jpa
-  jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  jap:
+    database:mysql
     hibernate:
-      ddl-auto: update
-    show-sql: true
-    generate-ddl: true
-    properties:
-      hibernate:
-        format-sql: true
-
-
+      ddl-auto: create
+      properties:
+      hibernate :
+      show_sql : true
