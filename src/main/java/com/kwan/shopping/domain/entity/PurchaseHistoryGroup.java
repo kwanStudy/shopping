@@ -3,6 +3,8 @@ package com.kwan.shopping.domain.entity;
 import com.kwan.shopping.domain.enums.PurchaseStatus;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,9 +23,10 @@ public class PurchaseHistoryGroup extends BaseEntity{
   private Long purchaseHistoryGroupId;
 
   @Column
+  @Enumerated(value = EnumType.STRING)
   private PurchaseStatus status;
 
-  @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "userId")
   private User user;
 

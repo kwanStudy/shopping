@@ -41,7 +41,7 @@ public class User extends BaseEntity{
   @Column
   private String endRegNum;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "userId",
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",
              cascade = {CascadeType.MERGE, CascadeType.PERSIST})
   private final List<PurchaseHistoryGroup> purchaseHistoryGroupList = new ArrayList<>();
 
