@@ -1,0 +1,21 @@
+server:
+  port: 9000
+
+#Database
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://49.50.175.185:3306/shopping
+    username: bose
+    password: qhs1tjd2!@
+  #Jpa
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+    properties:
+      hibernate:
+        format-sql: true

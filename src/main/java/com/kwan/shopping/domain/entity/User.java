@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Getter;
-
+ // extends  Base Entity 는 모든 클래스에 생성일자 / 변경일자를  확인하기위해 상속함.
 @Entity
 @Getter
 public class User extends BaseEntity{

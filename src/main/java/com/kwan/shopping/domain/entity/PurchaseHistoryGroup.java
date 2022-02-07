@@ -27,7 +27,14 @@ public class PurchaseHistoryGroup extends BaseEntity{
   private PurchaseStatus status;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "userId")
+  @JoinColumn(name = "userId") // joincoium 외래키 ! user.class  id와 연동시킴
   private User user;
 
+  public void setStatus(PurchaseStatus status) {
+    this.status = status;
+  }
+
+  public void modify() {
+    setStatus(PurchaseStatus.COMPLETE);
+  }
 }
