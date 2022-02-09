@@ -41,13 +41,8 @@ public class User extends BaseEntity{
   @Column
   private String endRegNum;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",
-             cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",// onetomany 에서 to 뒤에 many 경우 리스트로 받고 one 경우 객체로 받음
+             cascade = {CascadeType.MERGE, CascadeType.PERSIST}) // 병함 / 생성 or 변경
   private final List<PurchaseHistoryGroup> purchaseHistoryGroupList = new ArrayList<>();
-
-  public void test() {
-    purchaseHistoryGroupList.stream()
-                            .count();
-  }
 
 }

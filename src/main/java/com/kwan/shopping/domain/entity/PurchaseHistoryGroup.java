@@ -1,6 +1,9 @@
 package com.kwan.shopping.domain.entity;
 
 import com.kwan.shopping.domain.enums.PurchaseStatus;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,6 +33,10 @@ public class PurchaseHistoryGroup extends BaseEntity{
   @JoinColumn(name = "userId") // joincoium 외래키 ! user.class  id와 연동시킴
   private User user;
 
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "purchaseHistoryGroup",
+      cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+  private final List<PurchaseHistory> purchaseHistoryList = new ArrayList<>();
+
   public void setStatus(PurchaseStatus status) {
     this.status = status;
   }
@@ -37,4 +44,5 @@ public class PurchaseHistoryGroup extends BaseEntity{
   public void modify() {
     setStatus(PurchaseStatus.COMPLETE);
   }
+
 }

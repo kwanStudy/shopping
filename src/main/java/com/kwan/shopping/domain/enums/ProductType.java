@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum ProductType {
  // 생성자 고정시  모두 대문자로 작성 !!
   PROTEIN( "보충제"),
-  ASSIST_DEVICE("보조기구")
+  ASSIST_DEVICE("보조기구"),
+  CLOTHES("옷")
   ;
 
 
