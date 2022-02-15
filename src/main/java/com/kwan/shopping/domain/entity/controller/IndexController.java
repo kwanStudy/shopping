@@ -1,6 +1,7 @@
 package com.kwan.shopping.domain.entity.controller;
 
 import com.kwan.shopping.domain.entity.Product;
+import com.kwan.shopping.domain.entity.vo.ProductVo;
 import com.kwan.shopping.domain.service.IndexService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +21,17 @@ public class IndexController {
   }
 
   @GetMapping(value = "/findAll")
-  public List<Product> findAll() {
+  public List<ProductVo> findAll() {
     return indexService.findAll();
   }
 
   @GetMapping(value = "/assistDevice")
-  public List<Product> findAssistDevice() {
+  public List<ProductVo> findAssistDevice() {
     return indexService.findAssistDevice();
   }
 
   @GetMapping(value = "/clothes")
-  public List<Product> findClothes(){
+  public List<ProductVo> findClothes(){
     return indexService.findClothes();
   }
 

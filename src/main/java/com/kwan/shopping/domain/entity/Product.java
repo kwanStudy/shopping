@@ -1,5 +1,7 @@
 package com.kwan.shopping.domain.entity;
 
+import com.kwan.shopping.domain.entity.vo.ProductDetailVo;
+import com.kwan.shopping.domain.entity.vo.ProductVo;
 import com.kwan.shopping.domain.enums.EmployeeDepartment;
 import com.kwan.shopping.domain.enums.ProductType;
 import java.math.BigDecimal;
@@ -53,12 +55,23 @@ public class Product extends BaseEntity {
   @Column
   private String url;
 
-  @OneToMany(fetch = FetchType.LAZY , mappedBy = "product",
-             cascade = {CascadeType.MERGE , CascadeType.PERSIST})
-  private  final List<PurchaseHistory> purchaseHistoryList = new ArrayList<>();
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "product",
+             cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+  private final List<PurchaseHistory> purchaseHistoryList = new ArrayList<>();
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "employeeId")
   private Employee employee;
   //BigDecimal 소수점까지 표현할떄 사용함  double보다 오차가없지만 메모리가 크며 연산이오래걸림
+
+  public ProductVo convertToProductVo() {  //product를 productVo로 변환 하는 함수
+    return new ProductVo(name, price, saleRate.multiply(BigDecimal.valueOf(price)).longValue());
+  }
+
+
+  public ProductDetailVo convertToProductDetailVo() { //product를 productDetailVo로 변환 하는 함수
+
+    return new ProductDetailVo(price, saleRate.multiply(BigDecimal.valueOf(price)).longValue(),
+                               name, url);
+  }
 }
