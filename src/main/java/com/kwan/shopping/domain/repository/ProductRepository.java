@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-  List<Product> findByType(ProductType type);
+  List<Product> findByProductType(ProductType type);
 
 }

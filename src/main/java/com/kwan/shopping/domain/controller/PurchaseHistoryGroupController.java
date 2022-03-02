@@ -1,4 +1,4 @@
-package com.kwan.shopping.domain.entity.controller;
+package com.kwan.shopping.domain.controller;
 
 import com.kwan.shopping.domain.entity.PurchaseHistoryGroup;
 import com.kwan.shopping.domain.service.PurchaseHistoryGroupService;

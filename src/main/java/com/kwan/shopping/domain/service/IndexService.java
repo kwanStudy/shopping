@@ -36,7 +36,7 @@ public class IndexService {
 
 
   public List<ProductVo> findAssistDevice() {  // 인덱스 페이지 보조기구
-    List<Product> productList = productRepository.findByType(ProductType.ASSIST_DEVICE);
+    List<Product> productList = productRepository.findByProductType(ProductType.ASSIST_DEVICE);
     List<ProductVo> productVoList = new ArrayList<>();
 
     for(Product product : productList){
@@ -48,7 +48,7 @@ public class IndexService {
 
   public List<ProductVo> findClothes(){ //인덱스 페이지 옷
 
-    List<Product> productList =  productRepository.findByType(ProductType.CLOTHES);
+    List<Product> productList =  productRepository.findByProductType(ProductType.CLOTHES);
     List<ProductVo> productVoList = new ArrayList<>();
 
     for(Product product : productList){

@@ -1,12 +1,15 @@
-package com.kwan.shopping.domain.entity.controller;
+package com.kwan.shopping.domain.controller;
 
 import com.kwan.shopping.domain.entity.Product;
 import com.kwan.shopping.domain.entity.vo.ProductVo;
+import com.kwan.shopping.domain.enums.CustomExceptionStatus;
+import com.kwan.shopping.domain.exception.CustomException;
 import com.kwan.shopping.domain.service.IndexService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,6 +37,18 @@ public class IndexController {
   public List<ProductVo> findClothes(){
     return indexService.findClothes();
   }
+
+  @GetMapping(value = "/test")
+  public float test(@RequestParam int cnt) {
+    if(cnt == 0) {
+      throw new CustomException(CustomExceptionStatus.NOT_ZERO);
+    }
+    float result = 1/cnt;
+    return result;
+
+//    throw new CustomException(CustomExceptionStatus.SUCCESS);
+  }
+
 
 
 }

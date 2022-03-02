@@ -3,6 +3,7 @@ package com.kwan.shopping.domain.service;
 import com.kwan.shopping.domain.entity.Product;
 import com.kwan.shopping.domain.entity.vo.ProductVo;
 import com.kwan.shopping.domain.repository.ProductRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class ProductService {
 
   private ProductRepository productRepository;
+
 
   @Autowired
   public ProductService(ProductRepository productRepository) {
@@ -23,7 +25,7 @@ public class ProductService {
     List<Product> productList = productRepository.findAll(); //productRepository는 db에서 갖고오게 하는 매개물 ?
     List<ProductVo> productVoList = new ArrayList<>();
 
-    for (int i = 9 * (page - 1); i < 9*page; i++) {
+    for (int i = 9 * (page - 1); i < 9 * page; i++) {
       Product product = productList.get(i);
       ProductVo productVo = product.convertToProductVo();
       productVoList.add(productVo);
@@ -32,3 +34,4 @@ public class ProductService {
     //페이징!
   }
 }
+

@@ -28,13 +28,7 @@ public class PurchaseHistory extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "productId") //
-  private  Product product;
-
-  @Column
-  private Long productId;
-
-  @Column
-  private Long purchaseHistoryGroupId;
+  private Product product;
 
   @Column
   private Integer count;

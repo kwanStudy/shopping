@@ -46,7 +46,7 @@ public class Product extends BaseEntity {
 
   @Column
   @Enumerated(EnumType.STRING)
-  private ProductType Type;
+  private ProductType productType;
 
   @Column
   @Enumerated(EnumType.STRING) // DB로 들어갈떄   배열(0,1,2,)으로 들어가는것을  String타입으로 들어가게 변경해줌
@@ -70,7 +70,6 @@ public class Product extends BaseEntity {
 
 
   public ProductDetailVo convertToProductDetailVo() { //product를 productDetailVo로 변환 하는 함수
-
     return new ProductDetailVo(price, saleRate.multiply(BigDecimal.valueOf(price)).longValue(),
                                name, url);
   }

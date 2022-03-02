@@ -36,7 +36,7 @@ public class Employee extends BaseEntity{
   @Enumerated(EnumType.STRING)
   private EmployeeStatus status;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "Employee",
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee",
              cascade = {CascadeType.MERGE ,CascadeType.PERSIST})
   public final List<Product> productList = new ArrayList<>();
 }

@@ -1,4 +1,4 @@
-package com.kwan.shopping.domain.entity.controller;
+package com.kwan.shopping.domain.controller;
 
 import com.kwan.shopping.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
