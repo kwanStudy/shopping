@@ -1,6 +1,8 @@
 package com.kwan.shopping.domain.entity;
 
+import com.kwan.shopping.domain.entity.vo.SignUpRequest;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,10 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Getter;
- // extends  Base Entity 는 모든 클래스에 생성일자 / 변경일자를  확인하기위해 상속함.
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+// extends  Base Entity 는 모든 클래스에 생성일자 / 변경일자를  확인하기위해 상속함.
 @Entity
 @Getter
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,4 +50,13 @@ public class User extends BaseEntity{
              cascade = {CascadeType.MERGE, CascadeType.PERSIST}) // 병함 / 생성 or 변경
   private final List<PurchaseHistoryGroup> purchaseHistoryGroupList = new ArrayList<>();
 
+  public User(SignUpRequest request, String password) {
+    this.name = request.getName();
+    this.email = request.getEmail();
+    this.password = password;
+  }
+
+   public User() {
+
+   }
 }

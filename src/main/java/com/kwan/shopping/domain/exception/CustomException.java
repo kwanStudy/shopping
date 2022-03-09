@@ -7,15 +7,31 @@ import lombok.Getter;
 @Getter
 public class CustomException extends RuntimeException {
 
-  private int code;
-  private String message;
+//  private int code;
+//  private String message;
+//
+//  public CustomException(int code , String message){
+//    this.code = code;
+//    this.message = message;
+//  }
+//  public CustomException(CustomExceptionStatus status){
+//    this.code = status.getCode();
+//    this.message = status.getMessage();
+//  }
+//
+//
+//
 
-  CustomException(int code , String message){
-    this.code = code;
-    this.message = message;
-  }
-  public CustomException(CustomExceptionStatus status){
-    this.code = status.getCode();
-    this.message = status.getMessage();
-  }
+   private int code;
+   private String message;
+
+   public CustomException(int code, String message){
+     this.code =code;
+     this.message = message;
+   }
+
+   public CustomException(CustomExceptionStatus status){
+     this.code = status.getCode();
+     this.message = status.getMessage();
+   }
 }

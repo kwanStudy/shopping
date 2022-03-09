@@ -21,29 +21,51 @@ public class IndexService {
     this.productRepository = productRepository;
   }
   // dao 를  vo 로 변환하는방법 !!!   21 ~ 57줄
-  public List<ProductVo> findAll() { // 인덱스 페이지 전체
+//  public List<ProductVo> findAll() { // 인덱스 페이지 전체
+//
+//    List<Product> productList = productRepository.findAll();
+//    List<ProductVo> productVoList = new ArrayList<>();
+//
+//    for(Product product : productList) {
+//      productVoList.add(product.convertToProductVo());
+//    }
+//
+//    return productVoList;
 
-    List<Product> productList = productRepository.findAll();
-    List<ProductVo> productVoList = new ArrayList<>();
+//  }
 
-    for(Product product : productList) {
-      productVoList.add(product.convertToProductVo());
-    }
+   public List<ProductVo> findAll(){
 
-    return productVoList;
+     List<Product> productList = productRepository.findAll();
+     List<ProductVo> productVoList =  new ArrayList<>();
 
-  }
+     for(Product product : productList){
+       productVoList.add(product.convertToProductVo());
+     }
+       return productVoList;
 
+   }
 
-  public List<ProductVo> findAssistDevice() {  // 인덱스 페이지 보조기구
-    List<Product> productList = productRepository.findByProductType(ProductType.ASSIST_DEVICE);
-    List<ProductVo> productVoList = new ArrayList<>();
+//  public List<ProductVo> findAssistDevice() {  // 인덱스 페이지 보조기구
+//    List<Product> productList = productRepository.findByProductType(ProductType.ASSIST_DEVICE);
+//    List<ProductVo> productVoList = new ArrayList<>();
+//
+//    for(Product product : productList){
+//      productVoList.add(product.convertToProductVo());
+//    }
+//    return productVoList;
+//
+//  }
 
-    for(Product product : productList){
-      productVoList.add(product.convertToProductVo());
-    }
-    return productVoList;
+  public List<ProductVo> findAssistDevice(){
+     List<Product> productList = productRepository.findByProductType(ProductType.ASSIST_DEVICE);
+     List<ProductVo> productVoList = new ArrayList<>();
 
+     for(Product product : productList){
+       productVoList.add(product.convertToProductVo());
+
+     }
+     return productVoList;
   }
 
   public List<ProductVo> findClothes(){ //인덱스 페이지 옷

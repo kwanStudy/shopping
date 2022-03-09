@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/index")
+@RequestMapping(value = "/index") //요청에 대해 어떤 Controller , 어떤 메소드가 처리할지 맵핑하기 위한 어노테이션
 public class IndexController {
 
   private IndexService indexService;
@@ -48,6 +48,8 @@ public class IndexController {
 
 //    throw new CustomException(CustomExceptionStatus.SUCCESS);
   }
+
+
 
 
 
