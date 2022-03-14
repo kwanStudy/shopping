@@ -11,6 +11,7 @@ public enum CustomExceptionStatus {
   NOT_ZERO(10, "분모는 0이면 안됩니다."),
   EXISTS_EMAIL(11, "이메일이 존재합니다."),
   NOT_EXISTS_EMAIL(12, "이메일 또는 비밀번호가 틀렸습니다."),
+  NOT_AUTH(13, "잘못된 권한 접근입니다."),
   UNEXPECTED_ERROR(999, "예기치 못한 오류가 발생하였습니다.")
   ;
 

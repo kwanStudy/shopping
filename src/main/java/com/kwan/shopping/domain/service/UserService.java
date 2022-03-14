@@ -1,5 +1,6 @@
 package com.kwan.shopping.domain.service;
 
+import com.kwan.shopping.domain.config.JwtTokenProvider;
 import com.kwan.shopping.domain.entity.PurchaseHistoryGroup;
 import com.kwan.shopping.domain.entity.User;
 import com.kwan.shopping.domain.entity.vo.LoginRequest;
@@ -24,11 +25,12 @@ import org.springframework.stereotype.Service;
 //39
 @Slf4j
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor // 생성자를 생성주는 어노테이션 !!!
 public class UserService {
 
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
+  private final JwtTokenProvider jwtTokenProvider;
 
   public ResponseEntity<Object> login(LoginRequest request) {
 
@@ -43,7 +45,9 @@ public class UserService {
       throw new CustomException(CustomExceptionStatus.NOT_EXISTS_EMAIL);
     }
 
-    return ResponseEntity.ok().build();
+    String token = jwtTokenProvider.createToken(user.getEmail(), user.getName(), user.getUserId());
+
+    return ResponseEntity.ok().body(token);
   }
 
   public ResponseEntity<Object> signUp(SignUpRequest request) {
@@ -63,5 +67,34 @@ public class UserService {
 
     return user.getPurchaseHistoryGroupList();
   }
+
+//   private final UserRepository userRepository;
+//   private final PasswordEncoder passwordEncoder;
+//
+//   public ResponseEntity<Object> login(LoginRequest request){
+// User user = userRepository
+//     .findByEmail((request.getEmail()))
+//     .orElseThrow(() -> new CustomException(CustomExceptionStatus.NOT_EXISTS_EMAIL));
+//
+// if(!passwordEncoder.matches(request.getPassword(),user.getPassword())){
+//  throw new CustomException((CustomExceptionStatus.NOT_EXISTS_EMAIL));
+//     }
+//   return  ResponseEntity.ok().build();
+//   }
+//   public ResponseEntity<Object> signUp(SignUpRequest request){
+//      if(userRepository.existsByEmail(request.getEmail())){
+//        throw  new CustomException(CustomExceptionStatus.EXISTS_EMAIL);
+//     }
+//     String encodePassword = passwordEncoder.encode(request.getPassword());
+//      User user = new User(request, encodePassword);
+//      userRepository.save(user);
+//
+//      return ResponseEntity.ok(user);
+//   }
+//  public List<PurchaseHistoryGroup> findPurchaseHistoryGroup(String email) {
+//    User user = userRepository.findByEmail(email).get();
+//
+//    return user.getPurchaseHistoryGroupList();
+//  }
 
 }

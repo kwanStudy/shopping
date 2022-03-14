@@ -1,12 +1,15 @@
 package com.kwan.shopping.domain.controller;
 
+import com.kwan.shopping.domain.annotation.AuthCheck;
 import com.kwan.shopping.domain.entity.PurchaseHistoryGroup;
 import com.kwan.shopping.domain.service.PurchaseHistoryGroupService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,9 +26,10 @@ public class PurchaseHistoryGroupController {
     this.purchaseHistoryGroupService = purchaseHistoryGroupService;  //생성자 생성
   }
 
+  @AuthCheck
   @GetMapping(value = "/purchaseHistory") //데이터를 가져오기때문에 Get  url 임의적으로 추가
-  public List<PurchaseHistoryGroup> findBuyProduct(String email){  // String email 사용자 이메일을 통해 User 객체를 찾는다.
-      return purchaseHistoryGroupService.findBuyProduct(email);
+  public List<PurchaseHistoryGroup> findBuyProduct(HttpServletRequest request){  // String email 사용자 이메일을 통해 User 객체를 찾는다.
+      return purchaseHistoryGroupService.findBuyProduct(request);
   }
 
 

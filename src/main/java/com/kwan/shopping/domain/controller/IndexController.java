@@ -1,5 +1,7 @@
 package com.kwan.shopping.domain.controller;
 
+import com.kwan.shopping.domain.annotation.AuthCheck;
+import com.kwan.shopping.domain.config.JwtTokenProvider;
 import com.kwan.shopping.domain.entity.Product;
 import com.kwan.shopping.domain.entity.vo.ProductVo;
 import com.kwan.shopping.domain.enums.CustomExceptionStatus;
@@ -23,6 +25,7 @@ public class IndexController {
     this.indexService = indexService;
   }
 
+  @AuthCheck
   @GetMapping(value = "/findAll")
   public List<ProductVo> findAll() {
     return indexService.findAll();
@@ -37,20 +40,5 @@ public class IndexController {
   public List<ProductVo> findClothes(){
     return indexService.findClothes();
   }
-
-  @GetMapping(value = "/test")
-  public float test(@RequestParam int cnt) {
-    if(cnt == 0) {
-      throw new CustomException(CustomExceptionStatus.NOT_ZERO);
-    }
-    float result = 1/cnt;
-    return result;
-
-//    throw new CustomException(CustomExceptionStatus.SUCCESS);
-  }
-
-
-
-
 
 }
