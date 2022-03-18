@@ -11,7 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-//39
+//39  고냥 외우기 //스프링 시큐리티 세션보안관리를 편하게 해주니까 사용 이건 구글에 검색하면 표준 형식이 많음
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter { //시큐리티에 기본적인 설정을 잡는다 !

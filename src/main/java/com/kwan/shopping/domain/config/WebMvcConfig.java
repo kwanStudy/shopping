@@ -17,3 +17,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         .addPathPatterns("/**");
   }
 }
+
+// 기존에 있는 mvc 패턴 의설정을  내가 수정하는 클래스이다
+

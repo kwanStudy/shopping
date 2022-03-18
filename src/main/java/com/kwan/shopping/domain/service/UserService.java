@@ -11,6 +11,7 @@ import com.kwan.shopping.domain.repository.PurchaseHistoryGroupRepository;
 import com.kwan.shopping.domain.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +33,7 @@ public class UserService {
   private final PasswordEncoder passwordEncoder;
   private final JwtTokenProvider jwtTokenProvider;
 
-  public ResponseEntity<Object> login(LoginRequest request) {
+  public ResponseEntity<Object> login(LoginRequest request, HttpSession session) {
 
 //    Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());
 //    User user = optionalUser.orElseThrow();//if( object == null)
@@ -45,9 +46,13 @@ public class UserService {
       throw new CustomException(CustomExceptionStatus.NOT_EXISTS_EMAIL);
     }
 
-    String token = jwtTokenProvider.createToken(user.getEmail(), user.getName(), user.getUserId());
+    session.setAttribute("email", user.getEmail()); // 레디스에 세션을 저장하는 역할
 
-    return ResponseEntity.ok().body(token);
+    return ResponseEntity.ok().body(user.getEmail());  //ok는 프론트에 정상응답이라고 알려주는것
+
+//    String token = jwtTokenProvider.createToken(user.getEmail(), user.getName(), user.getUserId());
+
+//    return ResponseEntity.ok().body(token);
   }
 
   public ResponseEntity<Object> signUp(SignUpRequest request) {
@@ -60,6 +65,7 @@ public class UserService {
     userRepository.save(user);
 
     return ResponseEntity.ok(user);
+    //암호화 하는 작업  ResponseEntity 국룰을 잡아주는애  상대방에게 보내는 작업은 ResponseEntity를 사용!!
   }
 
   public List<PurchaseHistoryGroup> findPurchaseHistoryGroup(String email) {

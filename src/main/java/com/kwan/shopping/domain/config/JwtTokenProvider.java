@@ -23,29 +23,29 @@ public class JwtTokenProvider {
   @PostConstruct
   protected void init() {
     secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
-  } //hash화  :  난수로 만들어 암호화를한다.  //암호화 종류 : Base64
+  } //hash화  :  난수로 만들어 암호화를한다.  //암호화 종류 : Base64 는 바이트형식으로 !!
 
   //토큰 생성
   public String createToken(String email, String name, long userId) {
     Map<String, Object> claims = new HashMap<>();
-    claims.put("email", email);
+    claims.put("email", email); // map에 데이터 추가하는 함수가  .put
     claims.put("name", name);
     claims.put("userId", userId);
 
-    Date now = new Date();
+    Date now = new Date();  //현재시간찍기
     return Jwts.builder()
         .setClaims(claims)
         .setIssuedAt(now) //jwt 발급한 시간
         .setExpiration(new Date(now.getTime() + ACCESS_TOKEN_VALID_TIME)) //jwt 유효기간
         .signWith(SignatureAlgorithm.HS256, secretKey) //암호화 종류 : HS256
-        .compact();
+        .compact();     //String 생성
   }
    //back(body) - > font(head) -> back (이때부터 인증/ 유효성을 체크한다) 이떄부터 정해놓은 시간동안 사용가능
   // 토큰에서 회원 정보 추출
   public String getUserEmail(String token) {
     return String.valueOf(Jwts.parser()
-        .setSigningKey(secretKey)  //암호화된것을 다시 원상태로 만든다.
-        .parseClaimsJws(token)
+        .setSigningKey(secretKey)          //parser 파싱한다 - > 내가 원하는 형태로 변환한다 !
+        .parseClaimsJws(token)     // 이때 토큰 암호화를 푼다!
         .getBody()
         .get("email"));
   }
