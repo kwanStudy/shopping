@@ -26,23 +26,23 @@ public class AuthInterceptor implements HandlerInterceptor { //프런트보내�
     if(hasAnnotation){
       //어노테이션이 있으면서, User의 정보가 맞다면 true 반환
       //request에서 session 받아오기
-      HttpSession session = request.getSession();
-      String email = (String) session.getAttribute("email");
-//      String token = (String) session.getAttribute("token");//redis session에 저장된 객체 반환
-//      String token = request.getHeader("authentication");
+       HttpSession session = request.getSession();
+      String email = (String) session.getAttribute("email"); // Attribute 요소 !!
+
+ //     String token = request.getHeader("authentication");
 
       //jwt토큰을 확인하여 유효성 검증
 //      if(jwtTokenProvider.validateToken(token)) {
 //        return true;
-//      }
+//     }
       if(email != null) {
         return true;
       }
 
       session.invalidate();
-      throw new CustomException(CustomExceptionStatus.NOT_AUTH);
+        throw new CustomException(CustomExceptionStatus.NOT_AUTH);
     }
-    return true; //모두에게 공개되는 컨트롤러
+      return true; //모두에게 공개되는 컨트롤러
   }
 
   private boolean checkAnnotation(Object handler, Class<AuthCheck> authClass) {

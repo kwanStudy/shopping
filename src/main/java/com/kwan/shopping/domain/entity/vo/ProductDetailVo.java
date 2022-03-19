@@ -2,7 +2,7 @@ package com.kwan.shopping.domain.entity.vo;
 
 import lombok.Getter;
 
-@Getter
+@Getter  //내가 고객에게 보여주는 정보 !!
 public class ProductDetailVo {
 
   private long price;

@@ -51,7 +51,7 @@ public class UserService {
     return ResponseEntity.ok().body(user.getEmail());  //ok는 프론트에 정상응답이라고 알려주는것
 
 //    String token = jwtTokenProvider.createToken(user.getEmail(), user.getName(), user.getUserId());
-
+//
 //    return ResponseEntity.ok().body(token);
   }
 

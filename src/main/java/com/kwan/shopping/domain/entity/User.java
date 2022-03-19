@@ -53,7 +53,8 @@ public class User extends BaseEntity {
   public User(SignUpRequest request, String password) {
     this.name = request.getName();
     this.email = request.getEmail();
-    this.password = password;
+    this.password = password;  //암호화된 패스워드
+    this.address = request.getAddress();
   }
 
    public User() {

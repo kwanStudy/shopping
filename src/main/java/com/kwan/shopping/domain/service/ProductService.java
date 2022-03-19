@@ -1,7 +1,10 @@
 package com.kwan.shopping.domain.service;
 
 import com.kwan.shopping.domain.entity.Product;
+import com.kwan.shopping.domain.entity.vo.ProductDetailVo;
 import com.kwan.shopping.domain.entity.vo.ProductVo;
+import com.kwan.shopping.domain.enums.CustomExceptionStatus;
+import com.kwan.shopping.domain.exception.CustomException;
 import com.kwan.shopping.domain.repository.ProductRepository;
 
 import java.util.ArrayList;
@@ -52,6 +55,16 @@ public class ProductService {
       productVoList.add(productVo);
     }
     return productVoList;
+  }
+
+  public ProductDetailVo productDetailVo(Long productId) {
+
+    Product product = productRepository.findById(productId)
+        .orElseThrow(() -> new CustomException(CustomExceptionStatus.NOT_PRODUCT));
+
+    ProductDetailVo productDetailVo = product.convertToProductDetailVo();
+
+    return productDetailVo;
   }
 }
 
